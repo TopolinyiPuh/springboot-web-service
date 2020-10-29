@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+    <header th:replace="fragments/header"></header>
+    <div class="card" style="margin-top: 100px;">
+        <img src="https://cdn.pixabay.com/photo/2016/06/12/20/27/macro-1452987_960_720.jpg">
+
+        <div class="content">
+            <h1>ТЕХНИКО-ТЕХНОЛОГИЧЕСКОЕ ОТДЕЛЕНИЕ</h1>
+            <p>
+            <ul>
+                <li th:each="spec : ${tehn}"><a th:href="@{'/literature/'}" th:text="${spec.title}"></a></li>
+            </ul>
+            </p>
+        </div>
+    </div>
+
+    <div class="card" style="margin-top: 70px;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/%D0%97%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5_%D0%B2%D0%B5%D0%BD%D0%B3%D0%B5%D1%80%D1%81%D0%BA%D0%BE%D0%B3%D0%BE_%D0%BF%D0%B0%D1%80%D0%BB%D0%B0%D0%BC%D0%B5%D0%BD%D1%82%D0%B0_2010-09-22%2C_%D0%9D%D0%B5%D0%BE%D0%B3%D0%BE%D1%82%D0%B8%D0%BA%D0%B0_19_%D0%B2%D0%B5%D0%BA_-_panoramio.jpg/1200px-%D0%97%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5_%D0%B2%D0%B5%D0%BD%D0%B3%D0%B5%D1%80%D1%81%D0%BA%D0%BE%D0%B3%D0%BE_%D0%BF%D0%B0%D1%80%D0%BB%D0%B0%D0%BC%D0%B5%D0%BD%D1%82%D0%B0_2010-09-22%2C_%D0%9D%D0%B5%D0%BE%D0%B3%D0%BE%D1%82%D0%B8%D0%BA%D0%B0_19_%D0%B2%D0%B5%D0%BA_-_panoramio.jpg">
+
+        <div class="content">
+            <h1>АРХИТЕКТУРНО-СТРОИТЕЛЬНОЕ ОТДЕЛЕНИЕ</h1>
+            <p>
+            <ul>
+                <li th:each="spec : ${arh}"><a th:href="@{'/literature/'}" th:text="${spec.title}"></a></li>
+            </ul>
+            </p>
+        </div>
+    </div>
+
+
+
+    <div class="card" style="margin-top: 70px;">
+        <img src="https://img.gazeta.ru/files3/625/8053625/shutterstock_206141812-pic4_zoom-1500x1500-53916.jpg">
+
+        <div class="content">
+            <h1>ПРОМЫШЛЕННО-ТЕХНОЛОГИЧЕСКОЕ ОТДЕЛЕНИЕ</h1>
+            <p>
+            <ul>
+                <li th:each="spec : ${prom}"><a th:href="@{'/literature/'}" th:text="${spec.title}"></a></li>
+            </ul>
+            </p>
+        </div>
+    </div>
+
+    <br>
+
+
+    <div class="card" style="margin-left: 205px;">
+        <img src="https://kudapostupat.by/img/F_slovar/2019_slovar/613.jpg">
+
+        <div class="content">
+            <h1>ПРОФЕССИОНАЛЬНО-ТЕХНОЛОГИЧЕСКОЕ ОТДЕЛЕНИЕ</h1>
+            <p>
+            <ul>
+                <li th:each="spec : ${prof}"><a th:href="@{'/literature/'}" th:text="${spec.title}"></a></li>
+            </ul>
+            </p>
+        </div>
+    </div>
+
+
+
+    <div class="card">
+        <img src="https://студенту.рф/uploads/posts/2018-07/1532696098_1-3.jpg">
+
+        <div class="content">
+            <h1>ВЕЧЕРНЯЯ ФОРМА ОБУЧЕНИЯ</h1>
+            <p>
+            <ul>
+                <li th:each="spec : ${vech}"><a th:href="@{/speciality(id=${spec.id})}" th:text="${spec.title}"></a></li>
+            </ul>
+            </p>
+        </div>
+    </div>
+
+
+
+    <div class="card">
+        <img src="https://avatars.mds.yandex.net/get-zen_doc/114944/pub_5d9890351ee34f00ae009114_5d991226c7e50c00afe2e87a/scale_1200">
+
+        <div class="content">
+            <h1>ЗАОЧНАЯ ФОРМА ОБУЧЕНИЯ</h1>
+            <p>
+            <ul>
+                <li th:each="spec : ${zaoch}"><a th:href="@{'/literature/speciality'}" th:text="${spec.title}"></a></li>
+            </ul>
+            </p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/form.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+    <header th:replace="fragments/header"></header>
+</div>
+
+    <div class="signin">
+    <form method="post" th:action=@{/literature/add} th:object="${literature}" encType="multipart/form-data" class="ui form">
+        <h2>Добавить <br> литературу</h2>
+
+
+                    <input type="text" th:field="*{title}" name="title" placeholder="Название" autocomplete="off">
+                    <input type="text" th:field="*{author}" name="author" placeholder="Автор" autocomplete="off">
+                    <input type="text" th:field="*{year}" name="year" placeholder="Год" autocomplete="off">
+                    <input type="text" th:field="*{course}" name="course" placeholder="Курс" autocomplete="off">
+                <input type="file" name="files" multiple required />
+                    <select name="departmentId">
+                        <option th:each="department : ${departments}"
+                                th:text="${department.title}"
+                                th:value="${department.id}"></option>
+                    </select>
+
+                <select name="specialityId">
+                    <option th:each="speciality : ${specialities}"
+                            th:text="${speciality.title}"
+                            th:value="${speciality.id}"></option>
+                </select>
+                <select name="disciplineId">
+                    <option th:each="discipline : ${disciplines}"
+                            th:text="${discipline.title}"
+                            th:value="${discipline.id}"></option>
+                </select>
+                <select name="typeId">
+                    <option th:each="type : ${types}"
+                            th:text="${type.title}"
+                            th:value="${type.id}"></option>
+                </select>
+            <button class="btn">Добавить</button>
+    </form>
+        </div>
+</body>
+</html>

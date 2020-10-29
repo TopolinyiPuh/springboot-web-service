@@ -1,0 +1,29 @@
+<nav>
+    <input type="checkbox" id="nav" class="hidden">
+    <label for="nav" class="nav-btn">
+        <i></i>
+        <i></i>
+        <i></i>
+    </label>
+    <div class="logo">
+        <a href="https://vgtk.by">ВГТК</a>
+    </div>
+    <form th:action="@{/logout}" method="post">
+        <div class="nav-wrapper">
+            <ul>
+                <li><a href="/main">Главная</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Преподавателям</a>
+                    <div class="dropdown-content">
+                        <a href="/literature?size=50&page=1">Литература для учащихся</a>
+                        <a href="/literature/umk">УМК</a>
+                        <a href="/literature/add">Добавить литературу</a>
+                        <a href="/literature/search">Поиск</a>
+                    </div>
+                </li>
+                <li><a href="#">Администраторам</a></li>
+                <li><a th:href="@{/logout}">Выйти</a></li>
+            </ul>
+        </div>
+    </form>
+</nav>
