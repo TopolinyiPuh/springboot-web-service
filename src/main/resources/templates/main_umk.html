@@ -15,7 +15,7 @@
             <h1>ТЕХНИКО-ТЕХНОЛОГИЧЕСКОЕ ОТДЕЛЕНИЕ</h1>
             <p>
             <ul>
-                <li th:each="spec : ${tehn}"><a th:href="@{/speciality(id=${spec.id})}" th:text="${spec.title}"></a></li>
+                <li th:each="spec : ${tehn}"><a th:href="@{/teacher/umk/speciality(id=${spec.id})}" th:text="${spec.title}"></a></li>
             </ul>
             </p>
         </div>
@@ -28,7 +28,7 @@
             <h1>АРХИТЕКТУРНО-СТРОИТЕЛЬНОЕ ОТДЕЛЕНИЕ</h1>
             <p>
             <ul>
-                <li th:each="spec : ${arh}"><a th:href="@{/speciality(id=${spec.id})}" th:text="${spec.title}"></a></li>
+                <li th:each="spec : ${arh}"><a th:href="@{/teacher/umk/speciality(id=${spec.id})}" th:text="${spec.title}"></a></li>
             </ul>
             </p>
         </div>
@@ -43,7 +43,7 @@
             <h1>ПРОМЫШЛЕННО-ТЕХНОЛОГИЧЕСКОЕ ОТДЕЛЕНИЕ</h1>
             <p>
             <ul>
-                <li th:each="spec : ${prom}"><a th:href="@{/speciality(id=${spec.id})}" th:text="${spec.title}"></a></li>
+                <li th:each="spec : ${prom}"><a th:href="@{/teacher/umk/speciality(id=${spec.id})}" th:text="${spec.title}"></a></li>
             </ul>
             </p>
         </div>
@@ -59,7 +59,7 @@
             <h1>ПРОФЕССИОНАЛЬНО-ТЕХНОЛОГИЧЕСКОЕ ОТДЕЛЕНИЕ</h1>
             <p>
             <ul>
-                <li th:each="spec : ${prof}"><a th:href="@{/speciality(id=${spec.id})}" th:text="${spec.title}"></a></li>
+                <li th:each="spec : ${prof}"><a th:href="@{/teacher/umk/speciality(id=${spec.id})}" th:text="${spec.title}"></a></li>
             </ul>
             </p>
         </div>
@@ -74,7 +74,7 @@
             <h1>ВЕЧЕРНЯЯ ФОРМА ОБУЧЕНИЯ</h1>
             <p>
             <ul>
-                <li th:each="spec : ${vech}"><a th:href="@{/speciality(id=${spec.id})}" th:text="${spec.title}"></a></li>
+                <li th:each="spec : ${vech}"><a th:href="@{/teacher/umk/speciality(id=${spec.id})}" th:text="${spec.title}"></a></li>
             </ul>
             </p>
         </div>
@@ -89,7 +89,7 @@
             <h1>ЗАОЧНАЯ ФОРМА ОБУЧЕНИЯ</h1>
             <p>
             <ul>
-                <li th:each="spec : ${zaoch}"><a th:href="@{/speciality(id=${spec.id})}" th:text="${spec.title}"></a></li>
+                <li th:each="spec : ${zaoch}"><a th:href="@{/teacher/umk/speciality(id=${spec.id})}" th:text="${spec.title}"></a></li>
             </ul>
             </p>
         </div>

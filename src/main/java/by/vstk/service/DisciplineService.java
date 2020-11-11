@@ -12,7 +12,7 @@ public interface DisciplineService {
 
     List<Discipline> getDisciplineListByCourse(List<Discipline> disciplineList, String course);
 
-    List<Discipline> getDisciplinesBySpeciality(Long specialityId);
+    List<Discipline> getDisciplinesBySpeciality(Long specialityId, Long typeId);
 
     List<Discipline> getDisciplinesByCourse(String course);
 }

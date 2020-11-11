@@ -14,6 +14,8 @@ public interface LiteratureRepository extends JpaRepository<Literature, Long> {
     List<Literature> findByLiteratureTypeId(Long literatureTypeId);
     List<Literature> findBySpecialityId(Long specialityId);
     List<Literature> findByCourse(String course);
+    @Query(value = "SELECT * FROM literature WHERE literature.discipline_id = :discipline AND literature.literature_type_id = :type", nativeQuery = true)
+    List<Literature> findByDisciplineAndType(@Param("discipline") Long disciplineId, @Param("type") Long typeId);
 
     @Query(value = "SELECT l.id, l.author, l.data, l.doc_name, l.doc_type, l.title, l.updated, l.year, d.id, d.title AS discipline_title, \n" +
             "s.title AS speciality_title, u.username AS username\n" +

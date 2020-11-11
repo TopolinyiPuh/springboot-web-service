@@ -24,6 +24,8 @@ public class Discipline implements Serializable {
     private String title;
     @Column(nullable = false)
     private String course;
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Discipline_type.class, cascade = CascadeType.ALL)
+    private Discipline_type type;
     @OneToMany(mappedBy = "discipline", targetEntity = Literature.class, cascade = CascadeType.ALL)
     private List<Literature> literature;
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Speciality.class, cascade = CascadeType.ALL)

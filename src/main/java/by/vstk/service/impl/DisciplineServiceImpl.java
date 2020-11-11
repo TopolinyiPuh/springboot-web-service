@@ -47,8 +47,8 @@ public class DisciplineServiceImpl implements DisciplineService {
     }
 
     @Override
-    public List<Discipline> getDisciplinesBySpeciality(Long specialityId) {
-        return discipRepo.findBySpeciality(specialityId);
+    public List<Discipline> getDisciplinesBySpeciality(Long specialityId, Long typeId) {
+        return discipRepo.findBySpecialityAndType(specialityId, typeId);
     }
 
     @Override

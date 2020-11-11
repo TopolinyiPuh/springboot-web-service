@@ -102,6 +102,16 @@ public class LiteratureServiceImpl implements LiteratureService {
     }
 
     @Override
+    public List<LiteratureType> getByCategory(Long first, Long second) {
+        return typeRepo.findByCategory(first, second);
+    }
+
+    @Override
+    public List<Literature> getByDisciplineAndType(Long disciplineId, Long typeId) {
+        return litRepo.findByDisciplineAndType(disciplineId, typeId);
+    }
+
+    @Override
     public Page<Literature> search(Pageable pageable, String word) {
         int pageSize = pageable.getPageSize();
         int currentPage = pageable.getPageNumber();

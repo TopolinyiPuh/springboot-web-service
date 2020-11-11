@@ -23,6 +23,9 @@ public interface LiteratureService {
 
     List<Department> getDepartments();
     List<LiteratureType> getTypes();
+    List<LiteratureType> getByCategory(Long first, Long second);
+
+    List<Literature> getByDisciplineAndType(Long DisciplineId, Long typeId);
 
     Page<Literature> search(Pageable pageable, String word);
 

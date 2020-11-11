@@ -93,7 +93,40 @@ public class LiteratureController {
         return "lit_list";
     }
 
+    @GetMapping("/teacher/umk")
+    public String umk_main(Model model) {
+        model.addAttribute("tehn", specService.getSpecialitiesByDep(1L));
+        model.addAttribute("arh", specService.getSpecialitiesByDep(2L));
+        model.addAttribute("prom", specService.getSpecialitiesByDep(4L));
+        model.addAttribute("prof", specService.getSpecialitiesByDep(5L));
+        model.addAttribute("vech", specService.getSpecialitiesByDep(3L));
+        model.addAttribute("zaoch", specService.getSpecialitiesByDep(6L));
+        return "main_umk";
+    }
 
+    @GetMapping("/teacher/umk/speciality")
+    public String umk(@RequestParam Long id, Model model) {
+        model.addAttribute("generalD", discipService.getDisciplinesBySpeciality(id, 1L));
+        model.addAttribute("specialD", discipService.getDisciplinesBySpeciality(id, 2L));
+        model.addAttribute("specializationD", discipService.getDisciplinesBySpeciality(id, 3L));
+        return "speciality_umk";
+    }
+
+
+    @GetMapping("/teacher/umk/discipline")
+    public String umkD(Model model) {
+        model.addAttribute("typeI", service.getByCategory(1L, 4L));
+        model.addAttribute("typeII", service.getByCategory(5L, 8L));
+        model.addAttribute("typeIII", service.getByCategory(9L, 12L));
+        model.addAttribute("typeIV", service.getByCategory(13L, 17L));
+        return "umk";
+    }
+
+    @GetMapping("/teacher/umk/literature")
+    public String umkL(@RequestParam Long d, @RequestParam Long id, Model model) {
+        model.addAttribute("literature", service.getByDisciplineAndType(d, id));
+        return "lit_list1";
+    }
 
     @GetMapping("/literature/add")
     public String displayAddForm(Model model) {
