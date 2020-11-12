@@ -4,6 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.IndexedEmbedded;
+import org.hibernate.search.annotations.TermVector;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -14,6 +18,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Indexed
 @Entity
 @Table(name = "literature")
 public class Literature implements Serializable {
@@ -22,8 +27,10 @@ public class Literature implements Serializable {
     @Column(nullable = false, updatable = false)
     private Long id;
     @Column(nullable = false)
+    @Field(termVector = TermVector.YES)
     private String title;
     @Column(nullable = false)
+    @Field(termVector = TermVector.YES)
     private String author;
     @Column(nullable = false, length = 1)
     @Size(max = 1, message = "Value should be equal to 1")
@@ -35,6 +42,7 @@ public class Literature implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Department.class, optional = false)
     private Department department;
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Speciality.class, optional = false)
+    @IndexedEmbedded
     private Speciality speciality;
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Discipline.class, optional = false)
     private Discipline discipline;
@@ -45,6 +53,7 @@ public class Literature implements Serializable {
     @Lob
     private byte[] data;
     @ManyToOne(fetch = FetchType.EAGER)
+    @IndexedEmbedded
     private User user;
 
     public String getUserName() {

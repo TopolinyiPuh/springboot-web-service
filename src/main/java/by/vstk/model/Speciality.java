@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.search.annotations.Field;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -22,6 +23,7 @@ public class Speciality implements Serializable {
     @Column(nullable = false, updatable = false)
     private Long id;
     @Column(nullable = false)
+    @Field
     private String title;
     @Column(nullable = false)
     @Size(min = 8, max = 20, message = "Value should be between 8 and 20")

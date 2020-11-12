@@ -1,5 +1,6 @@
 package by.vstk.model;
 
+import org.hibernate.search.annotations.Field;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -15,6 +16,7 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Size(min=2, message = "Не меньше 5 знаков")
+    @Field
     private String username;
     @Size(min=2, message = "Не меньше 5 знаков")
     private String password;

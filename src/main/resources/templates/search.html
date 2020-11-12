@@ -1,37 +1,61 @@
-<!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <div class="container"><header th:replace="fragments/header"></header></div>
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
 
-    <form action="#" th:action="@{/literature/search}" th:object="${search}">
-        <label for="search_input">Search:</label> <input name="search"
-                                                         id="search">
-    </input>
-        <div th:if="${not #lists.isEmpty(search)}">
-            <h2>Search Results</h2>
-            <table>
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>name</th>
-                    <th>rarity level</th>
-                    <th>year</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="search : ${search}">
-                    <td th:text="${search.id}">Text ...</td>
-                    <td th:text="${search.title}">Text ...</td>
-                    <td th:text="${search.course}">Text ...</td>
-                    <td th:text="${search.year}">Text...</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </form>
+<head>
+    <title>Hibernate Search | Netgloo Blog</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<header th:replace="fragments/header"></header>
+<div class="container">
+    <input type="search" name="q">
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Название</th>
+            <th>Автор</th>
+            <th>Курс</th>
+            <th>Год</th>
+            <th>Ссылка</th>
+            <th>Обновлено</th>
+            <th>Отделение</th>
+            <th>Специальность</th>
+            <th>Дисциплина</th>
+            <th>Тип</th>
+            <th>User</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="lit : ${searchResults}">
+            <td th:text="${lit.id}"></td>
+            <td th:text="${lit.title}"></td>
+            <td th:text="${lit.author}"></td>
+            <td th:text="${lit.course}"></td>
+            <td th:text="${lit.year}"></td>
+            <td><a th:href="@{'/literature/download/'+${lit.id}}" th:if="${not #lists.isEmpty(lit.data)}" th:text="${lit.docName}"></a></td>
+            <td th:text="${lit.updated}"></td>
+            <td th:text="${lit.department.title}"></td>
+            <td th:text="${lit.speciality.title}"></td>
+            <td th:text="${lit.discipline.title}"></td>
+            <td th:text="${lit.literatureType.title}"></td>
+            <td th:text="${lit.userName}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+    <strong>Hint</strong>: the query "<a href='/search?q=amy'>amy</a>"
+    should return some results.
+
+<br />
+<hr />
+Proudly handcrafted by
+<a href='http://netgloo.com/en'>Netgloo</a>
+
 </body>
+
 </html>

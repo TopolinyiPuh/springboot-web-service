@@ -3,6 +3,7 @@ package by.vstk.controller;
 import by.vstk.model.Literature;
 import by.vstk.model.User;
 import by.vstk.service.impl.DisciplineServiceImpl;
+import by.vstk.service.impl.LiteratureSearch;
 import by.vstk.service.impl.LiteratureServiceImpl;
 import by.vstk.service.impl.SpecialityServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,12 +36,14 @@ public class LiteratureController {
     private final LiteratureServiceImpl service;
     private final SpecialityServiceImpl specService;
     private final DisciplineServiceImpl discipService;
+    private final LiteratureSearch searchService;
 
     @Autowired
-    public LiteratureController(LiteratureServiceImpl service, SpecialityServiceImpl specService, DisciplineServiceImpl discipService) {
+    public LiteratureController(LiteratureServiceImpl service, SpecialityServiceImpl specService, DisciplineServiceImpl discipService, LiteratureSearch searchService) {
         this.service = service;
         this.specService = specService;
         this.discipService = discipService;
+        this.searchService = searchService;
     }
 
     @GetMapping("/main")
@@ -55,7 +58,7 @@ public class LiteratureController {
     }
 
     @GetMapping("/speciality")
-    public String disciplinesListBySpeciality(@RequestParam Long id, String course, Model model) {
+    public String disciplinesListBySpeciality(@RequestParam Long id, Model model) {
         model.addAttribute("I", discipService.getDisciplinesBySpecialityAndCourse(id, "1"));
         model.addAttribute("II", discipService.getDisciplinesBySpecialityAndCourse(id, "2"));
         model.addAttribute("III", discipService.getDisciplinesBySpecialityAndCourse(id, "3"));
@@ -168,5 +171,20 @@ public class LiteratureController {
                 .contentType(MediaType.parseMediaType(doc.getDocType()))
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=\"" + doc.getDocName() + "\"")
                 .body(new ByteArrayResource(doc.getData()));
+    }
+
+    @RequestMapping("/search")
+    public String search(String q, Model model) {
+        List<Literature> searchResults = null;
+        try {
+            searchResults = searchService.search(q);
+        }
+        catch (Exception ex) {
+            // here you should handle unexpected errors
+            // ...
+            // throw ex;
+        }
+        model.addAttribute("searchResults", searchResults);
+        return "search";
     }
 }
