@@ -2,6 +2,7 @@ package by.vstk.repository;
 
 import by.vstk.model.Literature;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -17,11 +18,11 @@ public interface LiteratureRepository extends JpaRepository<Literature, Long> {
     @Query(value = "SELECT * FROM literature WHERE literature.discipline_id = :discipline AND literature.literature_type_id = :type", nativeQuery = true)
     List<Literature> findByDisciplineAndType(@Param("discipline") Long disciplineId, @Param("type") Long typeId);
 
-    @Query(value = "SELECT l.id, l.author, l.data, l.doc_name, l.doc_type, l.title, l.updated, l.year, d.id, d.title AS discipline_title, \n" +
-            "s.title AS speciality_title, u.username AS username\n" +
-            "FROM literature l \n" +
-            "INNER JOIN discipline d ON d.id = l.discipline_id \n" +
-            "INNER JOIN speciality s ON s.id = l.speciality_id\n" +
-            "INNER JOIN t_user u ON u.id = l.user_id WHERE d.title LIKE '%' + :word + '%' OR s.title LIKE '%' + :word + '%' OR u.username LIKE '%' + :word + '%'", nativeQuery = true)
-    List<Literature> findBy(@Param("word") String word);
+    @Modifying
+    @Query(value = "INSERT INTO literature_removed SELECT * FROM literature WHERE id = :idLit", nativeQuery = true)
+    void insert(@Param("idLit") Long idLit);
+
+    @Modifying
+    @Query(value = "DELETE FROM literature WHERE id = :idLit", nativeQuery = true)
+    void delete(@Param("idLit") Long idLit);
 }

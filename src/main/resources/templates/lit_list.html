@@ -24,6 +24,7 @@
                     <th>Дисциплина</th>
                     <th>Тип</th>
                     <th>User</th>
+                    <th>Действия</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -40,6 +41,11 @@
                     <td th:text="${lit.discipline.title}"></td>
                     <td th:text="${lit.literatureType.title}"></td>
                     <td th:text="${lit.userName}"></td>
+                    <td>
+                        <form method="GET" th:action="@{/remove}">
+                            <a th:href="@{/remove(id=${lit.id})}" class="btn btn-danger">Remove</a>
+                        </form>
+                    </td>
                 </tr>
                 </tbody>
             </table>

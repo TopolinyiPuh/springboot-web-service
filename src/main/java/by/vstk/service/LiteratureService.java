@@ -27,11 +27,12 @@ public interface LiteratureService {
 
     List<Literature> getByDisciplineAndType(Long DisciplineId, Long typeId);
 
-    Page<Literature> search(Pageable pageable, String word);
-
     List<Literature> getBySpeciality(Long specialityId);
     List<Literature> getByDiscipline(Long disciplineId);
     List<Literature> getByCourse(String course);
+
+    void insert(Long id);
+    void delete(Long id);
 
     boolean isExists(Long id);
 }

@@ -2,10 +2,7 @@ package by.vstk.controller;
 
 import by.vstk.model.Literature;
 import by.vstk.model.User;
-import by.vstk.service.impl.DisciplineServiceImpl;
-import by.vstk.service.impl.LiteratureSearch;
-import by.vstk.service.impl.LiteratureServiceImpl;
-import by.vstk.service.impl.SpecialityServiceImpl;
+import by.vstk.service.impl.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.data.domain.Page;
@@ -37,13 +34,15 @@ public class LiteratureController {
     private final SpecialityServiceImpl specService;
     private final DisciplineServiceImpl discipService;
     private final LiteratureSearch searchService;
+    private final LiteratureRemovedServiceImpl literatureRemovedService;
 
     @Autowired
-    public LiteratureController(LiteratureServiceImpl service, SpecialityServiceImpl specService, DisciplineServiceImpl discipService, LiteratureSearch searchService) {
+    public LiteratureController(LiteratureServiceImpl service, SpecialityServiceImpl specService, DisciplineServiceImpl discipService, LiteratureSearch searchService, LiteratureRemovedServiceImpl literatureRemovedService) {
         this.service = service;
         this.specService = specService;
         this.discipService = discipService;
         this.searchService = searchService;
+        this.literatureRemovedService = literatureRemovedService;
     }
 
     @GetMapping("/main")
@@ -131,6 +130,12 @@ public class LiteratureController {
         return "lit_list1";
     }
 
+    @GetMapping("/teacher/literature_removed")
+    public String litListRemoved(Model model) {
+        model.addAttribute("literature", literatureRemovedService.getAll());
+        return "lit_list_removed";
+    }
+
     @GetMapping("/literature/add")
     public String displayAddForm(Model model) {
         model.addAttribute("literature", new Literature());
@@ -186,5 +191,19 @@ public class LiteratureController {
         }
         model.addAttribute("searchResults", searchResults);
         return "search";
+    }
+
+    @GetMapping("/remove")
+    public String remove(@RequestParam Long id, Model model) {
+        service.insert(id);
+        service.delete(id);
+        return "redirect:/literature";
+    }
+
+    @GetMapping("/teacher/literature_removed/restore")
+    public String restore(@RequestParam Long id, Model model) {
+        literatureRemovedService.insert(id);
+        literatureRemovedService.delete(id);
+        return "redirect:/teacher/literature_removed";
     }
 }

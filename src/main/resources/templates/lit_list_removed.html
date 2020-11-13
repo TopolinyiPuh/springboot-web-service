@@ -41,8 +41,8 @@
             <td th:text="${lit.literatureType.title}"></td>
             <td th:text="${lit.userName}"></td>
             <td>
-                <form method="GET" th:action="@{/remove}">
-                    <a th:href="@{/remove(id=${lit.id})}" class="btn btn-danger">Remove</a>
+                <form method="GET" th:action="@{/teacher/literature_removed/restore}">
+                    <a th:href="@{/teacher/literature_removed/restore(id=${lit.id})}" class="btn btn-danger">Restore</a>
                 </form>
             </td>
         </tr>

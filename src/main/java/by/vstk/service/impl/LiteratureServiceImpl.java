@@ -112,26 +112,6 @@ public class LiteratureServiceImpl implements LiteratureService {
     }
 
     @Override
-    public Page<Literature> search(Pageable pageable, String word) {
-        int pageSize = pageable.getPageSize();
-        int currentPage = pageable.getPageNumber();
-        int startItem = currentPage * pageSize;
-        List<Literature> literature = litRepo.findBy(word);
-        List<Literature> list;
-
-        if (literature.size() < startItem) {
-            list = Collections.emptyList();
-        } else {
-            int toIndex = Math.min(startItem + pageSize, literature.size());
-            list = literature.subList(startItem, toIndex);
-        }
-
-        Page<Literature> literaturePage = new PageImpl<Literature>(list, PageRequest.of(currentPage, pageSize), literature.size());
-
-        return literaturePage;
-    }
-
-    @Override
     public List<Literature> getBySpeciality(Long specialityId) {
         return litRepo.findBySpecialityId(specialityId);
     }
@@ -144,6 +124,16 @@ public class LiteratureServiceImpl implements LiteratureService {
     @Override
     public List<Literature> getByCourse(String course) {
         return litRepo.findByCourse(course);
+    }
+
+    @Override
+    public void insert(Long id) {
+        litRepo.insert(id);
+    }
+
+    @Override
+    public void delete(Long id) {
+        litRepo.delete(id);
     }
 
     @Override
