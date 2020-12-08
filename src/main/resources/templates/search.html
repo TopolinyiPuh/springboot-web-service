@@ -5,49 +5,64 @@
     <title>Hibernate Search | Netgloo Blog</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/form.css}">
 </head>
 
 <body>
 
 <header th:replace="fragments/header"></header>
-<div class="container">
-    <input type="search" name="q">
-    <table>
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Название</th>
-            <th>Автор</th>
-            <th>Курс</th>
-            <th>Год</th>
-            <th>Ссылка</th>
-            <th>Обновлено</th>
-            <th>Отделение</th>
-            <th>Специальность</th>
-            <th>Дисциплина</th>
-            <th>Тип</th>
-            <th>User</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="lit : ${searchResults}">
-            <td th:text="${lit.id}"></td>
-            <td th:text="${lit.title}"></td>
-            <td th:text="${lit.author}"></td>
-            <td th:text="${lit.course}"></td>
-            <td th:text="${lit.year}"></td>
-            <td><a th:href="@{'/literature/download/'+${lit.id}}" th:if="${not #lists.isEmpty(lit.data)}" th:text="${lit.docName}"></a></td>
-            <td th:text="${lit.updated}"></td>
-            <td th:text="${lit.department.title}"></td>
-            <td th:text="${lit.speciality.title}"></td>
-            <td th:text="${lit.discipline.title}"></td>
-            <td th:text="${lit.literatureType.title}"></td>
-            <td th:text="${lit.userName}"></td>
-        </tr>
-        </tbody>
-    </table>
-</div>
+<form method="get" th:action=@{/admin/search/literature} th:field="*{q}">
+    <div class="container">
 
+
+
+        <input type="search" name="q" placeholder="Введите данные для поиска" autocomplete="off">
+        <table>
+            <thead>
+            <tr>
+                <th>Тип</th>
+                <th>Название</th>
+                <th>Ссылка</th>
+                <th>Автор</th>
+                <th>Год</th>
+                <th>Курс</th>
+                <th>Отделение</th>
+                <th>Специальность</th>
+                <th>Дисциплина</th>
+                <th>Добавил</th>
+                <th>Обновлено</th>
+                <th>Действия</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="lit : ${searchResults.content}">
+                <td th:text="${lit.literatureType.title}"></td>
+                <td th:text="${lit.title}"></td>
+                <td><a th:href="@{'/literature/download/'+${lit.id}}" th:if="${not #lists.isEmpty(lit.data)}" th:text="${lit.docName}"></a></td>
+                <td th:text="${lit.author}"></td>
+                <td th:text="${lit.year}"></td>
+                <td th:text="${lit.course}"></td>
+                <td th:text="${lit.department.title}"></td>
+                <td th:text="${lit.speciality.title}"></td>
+                <td th:text="${lit.discipline.title}"></td>
+                <td th:text="${lit.user.FIO}"></td>
+                <td th:text="${lit.updated}"></td>
+                <td>
+                    <form method="GET" th:action="@{/remove}">
+                        <a th:href="@{/remove(id=${lit.id})}" class="btn btn-danger">Удалить</a>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <ul th:if="${searchResults.totalPages > 0}" class="pagination modal"
+        th:each="pageNumber : ${numbers}">
+        <a th:href="@{/admin/search/literature(page=${pageNumber})}"
+           th:text=${pageNumber}
+           th:class="${pageNumber == searchResults.number + 1} ? active"></a>
+    </ul>
+</form>
 </body>
 
 </html>

@@ -12,39 +12,22 @@
     <table>
         <thead>
         <tr>
-            <th>ID</th>
             <th>Название</th>
-            <th>Автор</th>
-            <th>Курс</th>
-            <th>Год</th>
             <th>Ссылка</th>
+            <th>Автор</th>
+            <th>Год</th>
+            <th>Добавил</th>
             <th>Обновлено</th>
-            <th>Отделение</th>
-            <th>Специальность</th>
-            <th>Дисциплина</th>
-            <th>Тип</th>
-            <th>User</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="lit : ${literature}">
-            <td th:text="${lit.id}"></td>
             <td th:text="${lit.title}"></td>
-            <td th:text="${lit.author}"></td>
-            <td th:text="${lit.course}"></td>
-            <td th:text="${lit.year}"></td>
             <td><a th:href="@{'/literature/download/'+${lit.id}}" th:if="${not #lists.isEmpty(lit.data)}" th:text="${lit.docName}"></a></td>
+            <td th:text="${lit.author}"></td>
+            <td th:text="${lit.year}"></td>
+            <td th:text="${lit.user.FIO}"></td>
             <td th:text="${lit.updated}"></td>
-            <td th:text="${lit.department.title}"></td>
-            <td th:text="${lit.speciality.title}"></td>
-            <td th:text="${lit.discipline.title}"></td>
-            <td th:text="${lit.literatureType.title}"></td>
-            <td th:text="${lit.userName}"></td>
-            <td>
-                <form method="GET" th:action="@{/remove}">
-                    <a th:href="@{/remove(id=${lit.id})}" class="btn btn-danger">Remove</a>
-                </form>
-            </td>
         </tr>
         </tbody>
     </table>

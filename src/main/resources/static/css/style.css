@@ -16,7 +16,7 @@ body {
       height: 100vh;
       font-family: Poppins;
       font-weight: 400;
-      background: url(https://cdn.pixabay.com/photo/2020/09/15/07/45/pine-forest-5572944_960_720.jpg);
+      background: url(/images/background.jpg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260);
       background-attachment: fixed;
       background-position: center;
       background-size: cover;
@@ -34,7 +34,7 @@ nav {
 }
 
 .logo a {
-      color: #000;
+      color: #55608f;
       text-transform: uppercase;
       font-weight: 700;
       font-size: 18px;
@@ -62,7 +62,7 @@ nav ul li:last-child {
 nav ul li a {
       display: inline-block;
       outline: none;
-      color: #000;
+      color: black;
       text-transform: uppercase;
       text-decoration: none;
       font-size: 14px;
@@ -244,12 +244,21 @@ li.dropdown {
       margin-right: 100px;
       margin-left: 100px;
 }
+.card li a{
+      color: black;
+      text-decoration: none;
+}
+.card li a:visited { text-decoration: none; }
+.card li a:active { text-decoration: none; }
+.card li a:hover {
+    text-decoration: underline; /* Делает ссылку подчеркнутой при наведении на нее курсора */
+   }
 .content{
       padding: 15px 25px;
 }
 img{
       width: 100%;
-      height: 300px;
+      height: 100px;
       object-fit: cover;
 }
 h1{
@@ -278,10 +287,12 @@ th,
 td {
   padding: 15px;
   background-color: rgba(255, 255, 255, 0.2);
-  color: #fff;
+  color: #980b0b;
+  style="font-weight:bold"
 }
 th {
   text-align: left;
+  color: white;
 }
 thead th {
   background-color: #55608f;
@@ -351,7 +362,7 @@ tbody td:hover:before {
 /*AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA*/
 a {
     text-decoration: none; /* Убирает подчеркивание для ссылок */
-    color: #1d2625; /* Цвет ссылки */
+    color: #d72626; /* Цвет ссылки */
    }
    a:visited { text-decoration: none; }
    a:active { text-decoration: none; }

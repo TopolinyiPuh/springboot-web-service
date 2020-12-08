@@ -17,7 +17,7 @@
             <h1>I</h1>
             <p>
             <ul>
-                <li th:each="discipline : ${I}"><a href="/discipline" th:text="${discipline.title}"></a></li>
+                <li th:each="discipline : ${I}"><a th:href="@{/study/literature(id=${discipline.id})}" th:text="${discipline.title}"></a></li>
             </ul>
             </p>
         </div>
@@ -28,7 +28,7 @@
             <h1>II</h1>
             <p>
             <ul>
-                <li th:each="discipline : ${II}"><a href="/discipline" th:text="${discipline.title}"></a></li>
+                <li th:each="discipline : ${II}"><a th:href="@{/study/literature(id=${discipline.id})}" th:text="${discipline.title}"></a></li>
             </ul>
             </p>
         </div>
@@ -39,7 +39,7 @@
             <h1>III</h1>
             <p>
             <ul>
-                <li th:each="discipline : ${III}"><a href="/discipline" th:text="${discipline.title}"></a></li>
+                <li th:each="discipline : ${III}"><a th:href="@{/study/literature(id=${discipline.id})}" th:text="${discipline.title}"></a></li>
             </ul>
             </p>
         </div>
@@ -50,7 +50,7 @@
             <h1>IV</h1>
             <p>
             <ul>
-                <li th:each="discipline : ${IV}"><a href="/discipline" th:text="${discipline.title}"></a></li>
+                <li th:each="discipline : ${IV}"><a th:href="@{/study/literature(id=${discipline.id})}" th:text="${discipline.title}"></a></li>
             </ul>
             </p>
         </div>

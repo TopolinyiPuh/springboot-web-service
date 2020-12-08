@@ -15,20 +15,20 @@
             <h1>ТЕХНИКО-ТЕХНОЛОГИЧЕСКОЕ ОТДЕЛЕНИЕ</h1>
             <p>
             <ul>
-                <li th:each="spec : ${tehn}"><a th:href="@{/speciality(id=${spec.id})}" th:text="${spec.title}"></a></li>
+                <li th:each="spec : ${tehn}"><a th:href="@{/study/speciality(id=${spec.id})}" th:text="${spec.title}"></a></li>
             </ul>
             </p>
         </div>
     </div>
 
-    <div class="card" style="margin-top: 70px;">
+    <div class="card" style="margin-top: 100px;">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/%D0%97%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5_%D0%B2%D0%B5%D0%BD%D0%B3%D0%B5%D1%80%D1%81%D0%BA%D0%BE%D0%B3%D0%BE_%D0%BF%D0%B0%D1%80%D0%BB%D0%B0%D0%BC%D0%B5%D0%BD%D1%82%D0%B0_2010-09-22%2C_%D0%9D%D0%B5%D0%BE%D0%B3%D0%BE%D1%82%D0%B8%D0%BA%D0%B0_19_%D0%B2%D0%B5%D0%BA_-_panoramio.jpg/1200px-%D0%97%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5_%D0%B2%D0%B5%D0%BD%D0%B3%D0%B5%D1%80%D1%81%D0%BA%D0%BE%D0%B3%D0%BE_%D0%BF%D0%B0%D1%80%D0%BB%D0%B0%D0%BC%D0%B5%D0%BD%D1%82%D0%B0_2010-09-22%2C_%D0%9D%D0%B5%D0%BE%D0%B3%D0%BE%D1%82%D0%B8%D0%BA%D0%B0_19_%D0%B2%D0%B5%D0%BA_-_panoramio.jpg">
 
         <div class="content">
             <h1>АРХИТЕКТУРНО-СТРОИТЕЛЬНОЕ ОТДЕЛЕНИЕ</h1>
             <p>
             <ul>
-                <li th:each="spec : ${arh}"><a th:href="@{/speciality(id=${spec.id})}" th:text="${spec.title}"></a></li>
+                <li th:each="spec : ${arh}"><a th:href="@{/study/speciality(id=${spec.id})}" th:text="${spec.title}"></a></li>
             </ul>
             </p>
         </div>
@@ -43,7 +43,7 @@
             <h1>ПРОМЫШЛЕННО-ТЕХНОЛОГИЧЕСКОЕ ОТДЕЛЕНИЕ</h1>
             <p>
             <ul>
-                <li th:each="spec : ${prom}"><a th:href="@{/speciality(id=${spec.id})}" th:text="${spec.title}"></a></li>
+                <li th:each="spec : ${prom}"><a th:href="@{/study/speciality(id=${spec.id})}" th:text="${spec.title}"></a></li>
             </ul>
             </p>
         </div>
@@ -59,7 +59,7 @@
             <h1>ПРОФЕССИОНАЛЬНО-ТЕХНОЛОГИЧЕСКОЕ ОТДЕЛЕНИЕ</h1>
             <p>
             <ul>
-                <li th:each="spec : ${prof}"><a th:href="@{/speciality(id=${spec.id})}" th:text="${spec.title}"></a></li>
+                <li th:each="spec : ${prof}"><a th:href="@{/study/speciality(id=${spec.id})}" th:text="${spec.title}"></a></li>
             </ul>
             </p>
         </div>
@@ -74,7 +74,7 @@
             <h1>ВЕЧЕРНЯЯ ФОРМА ОБУЧЕНИЯ</h1>
             <p>
             <ul>
-                <li th:each="spec : ${vech}"><a th:href="@{/speciality(id=${spec.id})}" th:text="${spec.title}"></a></li>
+                <li th:each="spec : ${vech}"><a th:href="@{/study/speciality(id=${spec.id})}" th:text="${spec.title}"></a></li>
             </ul>
             </p>
         </div>
@@ -89,7 +89,7 @@
             <h1>ЗАОЧНАЯ ФОРМА ОБУЧЕНИЯ</h1>
             <p>
             <ul>
-                <li th:each="spec : ${zaoch}"><a th:href="@{/speciality(id=${spec.id})}" th:text="${spec.title}"></a></li>
+                <li th:each="spec : ${zaoch}"><a th:href="@{/study/speciality(id=${spec.id})}" th:text="${spec.title}"></a></li>
             </ul>
             </p>
         </div>

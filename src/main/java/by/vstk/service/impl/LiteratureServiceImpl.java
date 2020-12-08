@@ -25,14 +25,16 @@ public class LiteratureServiceImpl implements LiteratureService {
     private final SpecialityRepository specRepo;
     private final DisciplineRepository discipRepo;
     private final LiteratureTypeRepository typeRepo;
+    private final LiteratureSearch searchService;
 
     @Autowired
-    public LiteratureServiceImpl(LiteratureRepository litRepo, DepartmentRepository depRepo, SpecialityRepository specRepo, DisciplineRepository discipRepo, LiteratureTypeRepository typeRepo) {
+    public LiteratureServiceImpl(LiteratureRepository litRepo, DepartmentRepository depRepo, SpecialityRepository specRepo, DisciplineRepository discipRepo, LiteratureTypeRepository typeRepo, LiteratureSearch searchService) {
         this.litRepo = litRepo;
         this.depRepo = depRepo;
         this.specRepo = specRepo;
         this.discipRepo = discipRepo;
         this.typeRepo = typeRepo;
+        this.searchService = searchService;
     }
 
     @Override
@@ -78,6 +80,7 @@ public class LiteratureServiceImpl implements LiteratureService {
         LiteratureType type = typeRepo.getOne(typeId);
 
         for (MultipartFile file : files) {
+            literature.setTitle(file.getOriginalFilename());
             literature.setDocName(file.getOriginalFilename());
             literature.setDocType(file.getContentType());
             literature.setData(file.getBytes());
@@ -89,6 +92,29 @@ public class LiteratureServiceImpl implements LiteratureService {
             literature.setUser(user);
             litRepo.save(literature);
         }
+    }
+
+    @Override
+    public void update(Long id, Long departmentId, Long specialityId, Long disciplineId, Long typeId, MultipartFile[] files, User user) throws IOException {
+       Literature literatureToUpdate = litRepo.getOne(id);
+        Department department = depRepo.getOne(departmentId);
+        Speciality speciality = specRepo.getOne(specialityId);
+        Discipline discipline = discipRepo.getOne(disciplineId);
+        LiteratureType type = typeRepo.getOne(typeId);
+
+        for (MultipartFile file : files) {
+            literatureToUpdate.setDocName(file.getOriginalFilename());
+            literatureToUpdate.setDocType(file.getContentType());
+            literatureToUpdate.setData(file.getBytes());
+            literatureToUpdate.setDepartment(department);
+            literatureToUpdate.setSpeciality(speciality);
+            literatureToUpdate.setDiscipline(discipline);
+            literatureToUpdate.setLiteratureType(type);
+            literatureToUpdate.setUpdated(LocalDateTime.now());
+            literatureToUpdate.setUser(user);
+            litRepo.save(literatureToUpdate);
+        }
+
     }
 
     @Override
@@ -109,6 +135,11 @@ public class LiteratureServiceImpl implements LiteratureService {
     @Override
     public List<Literature> getByDisciplineAndType(Long disciplineId, Long typeId) {
         return litRepo.findByDisciplineAndType(disciplineId, typeId);
+    }
+
+    @Override
+    public List<Literature> getByDisciplineAndTypes(Long disciplineId) {
+        return litRepo.findByDisciplineAndTypes(disciplineId);
     }
 
     @Override

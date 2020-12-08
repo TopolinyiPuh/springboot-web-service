@@ -74,4 +74,23 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         return em.createQuery("SELECT u FROM User u WHERE u.id > :paramId", User.class)
                 .setParameter("paramId", idMin).getResultList();
     }
+
+    @Override
+    public void updatePassword(User user) {
+        User u = userRepository.getOne(user.getId());
+        u.setPassword(bCryptPasswordEncoder.encode(u.getPassword()));
+        userRepository.save(u);
+    }
+
+    public boolean updateRoles(User user) {
+        User u = userRepository.getOne(user.getId());
+        u.setId(u.getId());
+        if (u.getRoles().contains(new Role(2L, "ROLE_TEACHER"))) {
+            return false;
+        }
+        u.setRoles(Collections.singleton(new Role(2L, "ROLE_TEACHER")));
+        userRepository.save(u);
+        return true;
+    }
+
 }

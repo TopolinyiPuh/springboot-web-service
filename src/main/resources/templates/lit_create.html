@@ -26,7 +26,6 @@
                                 th:text="${department.title}"
                                 th:value="${department.id}"></option>
                     </select>
-
                 <select name="specialityId">
                     <option th:each="speciality : ${specialities}"
                             th:text="${speciality.title}"

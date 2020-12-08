@@ -20,12 +20,14 @@ public interface LiteratureService {
     Literature getFile(Long id);
 
     void create(Literature literature, Long departmentId, Long specialityId, Long disciplineId, Long typeId, MultipartFile[] files, User user) throws IOException;
+    void update(Long id, Long departmentId, Long specialityId, Long disciplineId, Long typeId, MultipartFile[] files, User user) throws IOException;
 
     List<Department> getDepartments();
     List<LiteratureType> getTypes();
     List<LiteratureType> getByCategory(Long first, Long second);
 
-    List<Literature> getByDisciplineAndType(Long DisciplineId, Long typeId);
+    List<Literature> getByDisciplineAndType(Long disciplineId, Long typeId);
+    List<Literature> getByDisciplineAndTypes(Long disciplineId);
 
     List<Literature> getBySpeciality(Long specialityId);
     List<Literature> getByDiscipline(Long disciplineId);

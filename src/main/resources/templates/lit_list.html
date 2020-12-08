@@ -46,6 +46,11 @@
                             <a th:href="@{/remove(id=${lit.id})}" class="btn btn-danger">Remove</a>
                         </form>
                     </td>
+                    <td>
+                        <form method="GET" th:action="@{/literature/update}">
+                            <a th:href="@{/literature/update(id=${lit.id})}" class="btn btn-danger">Изменить</a>
+                        </form>
+                    </td>
                 </tr>
                 </tbody>
             </table>

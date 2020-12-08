@@ -57,6 +57,6 @@ public class Literature implements Serializable {
     private User user;
 
     public String getUserName() {
-        return user != null ? user.getUsername() : "none";
+        return user != null ? user.getFIO() : "none";
     }
 }

@@ -14,4 +14,6 @@ public interface UserService {
     boolean deleteUser(Long id);
 
     List<User> usergtList(Long idMin);
+
+    void updatePassword(User user);
 }

@@ -18,6 +18,9 @@ public interface LiteratureRepository extends JpaRepository<Literature, Long> {
     @Query(value = "SELECT * FROM literature WHERE literature.discipline_id = :discipline AND literature.literature_type_id = :type", nativeQuery = true)
     List<Literature> findByDisciplineAndType(@Param("discipline") Long disciplineId, @Param("type") Long typeId);
 
+    @Query(value = "SELECT * FROM literature WHERE literature.discipline_id = :discipline AND literature.literature_type_id = 18 OR literature.literature_type_id = 19 OR literature.literature_type_id = 20", nativeQuery = true)
+    List<Literature> findByDisciplineAndTypes(@Param("discipline") Long disciplineId);
+
     @Modifying
     @Query(value = "INSERT INTO literature_removed SELECT * FROM literature WHERE id = :idLit", nativeQuery = true)
     void insert(@Param("idLit") Long idLit);
