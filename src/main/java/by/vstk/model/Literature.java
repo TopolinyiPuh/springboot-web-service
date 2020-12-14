@@ -35,8 +35,6 @@ public class Literature implements Serializable {
     @Column(nullable = false, length = 1)
     @Size(max = 1, message = "Value should be equal to 1")
     private String course;
-    @Column(length = 4)
-    @Size(min = 2, max = 4, message = "Value should be between 2 and 4")
     private String year;
     private LocalDateTime updated;
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Department.class, optional = false)
